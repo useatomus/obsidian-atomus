@@ -1,0 +1,10 @@
+{
+  "id": "atomus",
+  "name": "Atomus",
+  "version": "0.1.0",
+  "minAppVersion": "1.4.0",
+  "description": "Spaced repetition atoms inline. Renders Q == A, cloze, and Atomus syntax right in your notes.",
+  "author": "Atomus",
+  "authorUrl": "https://atomus.app",
+  "isDesktopOnly": false
+}
