@@ -2,6 +2,8 @@
 
 Spaced-repetition atoms inline — renders Atomus syntax right in your Obsidian notes.
 
+![Atomus for Obsidian](https://github.com/user-attachments/assets/2bb58fa4-8594-42ac-9319-10e02566e74c)
+
 ## What it does
 
 Atomus uses a simple markdown-first syntax for spaced-repetition "atoms". This plugin makes that syntax render beautifully inside Obsidian, so you can write and review from the same app you already use for notes.
