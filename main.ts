@@ -31,7 +31,7 @@ class ArrowWidget extends WidgetType {
     return span;
   }
   eq(other: WidgetType): boolean {
-    return other instanceof ArrowWidget && (other as ArrowWidget).glyph === this.glyph;
+    return other instanceof ArrowWidget && other.glyph === this.glyph;
   }
 }
 
@@ -46,7 +46,7 @@ class ClozePillWidget extends WidgetType {
     return span;
   }
   eq(other: WidgetType): boolean {
-    return other instanceof ClozePillWidget && (other as ClozePillWidget).text === this.text;
+    return other instanceof ClozePillWidget && other.text === this.text;
   }
 }
 
@@ -61,7 +61,7 @@ class MCMarkerWidget extends WidgetType {
     return span;
   }
   eq(other: WidgetType): boolean {
-    return other instanceof MCMarkerWidget && (other as MCMarkerWidget).correct === this.correct;
+    return other instanceof MCMarkerWidget && other.correct === this.correct;
   }
 }
 
@@ -250,14 +250,18 @@ function renderMultilineChild(container: HTMLElement, raw: string): void {
 }
 
 function splitParagraphLines(node: HTMLElement): string[] {
-  const html = node.innerHTML;
-  // Split by <br> preserving whitespace that Obsidian kept
-  const parts = html.split(/<br\s*\/?>/i);
-  const decoder = document.createElement("div");
-  return parts.map((part) => {
-    decoder.innerHTML = part;
-    return decoder.textContent ?? "";
-  });
+  const lines: string[] = [];
+  let current = "";
+  for (const child of Array.from(node.childNodes)) {
+    if (child.nodeType === Node.ELEMENT_NODE && (child as Element).tagName === "BR") {
+      lines.push(current);
+      current = "";
+    } else {
+      current += child.textContent ?? "";
+    }
+  }
+  lines.push(current);
+  return lines;
 }
 
 function processReadingMode(el: HTMLElement, _ctx: MarkdownPostProcessorContext): void {
@@ -412,7 +416,7 @@ function processReadingMode(el: HTMLElement, _ctx: MarkdownPostProcessorContext)
 }
 
 export default class AtomusPlugin extends Plugin {
-  async onload() {
+  onload() {
     this.registerEditorExtension(atomusViewPlugin);
     this.registerMarkdownPostProcessor(processReadingMode);
   }
