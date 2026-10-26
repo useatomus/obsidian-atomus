@@ -1,6 +1,6 @@
 {
   "name": "atomus-obsidian",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Render Atomus flashcards and play saved phrase audio in Obsidian",
   "main": "main.js",
   "scripts": {
@@ -23,7 +23,6 @@
     "@eslint/js": "^9.39.5",
     "@eslint/json": "^0.14.0",
     "@types/node": "^20.14.0",
-    "builtin-modules": "^3.3.0",
     "esbuild": "^0.21.5",
     "eslint": "^9.39.5",
     "eslint-plugin-obsidianmd": "^0.4.2",

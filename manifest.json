@@ -1,7 +1,7 @@
 {
   "id": "atomus",
   "name": "Atomus Flashcards",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "minAppVersion": "1.4.0",
   "description": "Flashcards in plain Markdown: renders Q == A cards, cloze gaps and multiple choice, and plays the audio of phrases you saved with the Atomus Mac app to learn a language.",
   "author": "Atomus",
