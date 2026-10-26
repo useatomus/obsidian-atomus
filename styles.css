@@ -50,7 +50,6 @@
 .atomus-done-child {
   opacity: 0.35;
   text-decoration: line-through;
-  text-decoration-color: currentColor;
 }
 
 /* Multiline atoms: parent question ends with `==`, children below are indented. */
