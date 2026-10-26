@@ -94,3 +94,21 @@
   color: var(--text-normal, inherit);
   font-weight: 500;
 }
+
+/* Play button for phrases saved with audio by the Atomus app */
+.atomus-play.clickable-icon {
+  display: inline-flex;
+  vertical-align: middle;
+  margin-left: 6px;
+  padding: 2px;
+  color: var(--text-faint);
+}
+
+.atomus-play.clickable-icon:hover {
+  color: var(--text-accent);
+}
+
+.atomus-play svg {
+  width: var(--icon-xs, 14px);
+  height: var(--icon-xs, 14px);
+}

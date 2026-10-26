@@ -1,9 +1,9 @@
 {
   "id": "atomus",
-  "name": "Atomus",
-  "version": "0.1.0",
+  "name": "Atomus Flashcards",
+  "version": "0.2.0",
   "minAppVersion": "1.4.0",
-  "description": "Spaced repetition atoms inline. Renders Q == A, cloze, and Atomus syntax right in your notes.",
+  "description": "Flashcards in plain Markdown: renders Q == A cards, cloze gaps and multiple choice, and plays the audio of phrases you saved with the Atomus Mac app to learn a language.",
   "author": "Atomus",
   "authorUrl": "https://atomus.app",
   "isDesktopOnly": false

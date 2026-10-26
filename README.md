@@ -1,61 +1,60 @@
-# Atomus for Obsidian
+# Atomus Flashcards
 
-Spaced-repetition atoms inline — renders Atomus syntax right in your Obsidian notes.
+Flashcards in plain Markdown, rendered in your notes. Write `question == answer` on any line and it shows as a card, with cloze gaps and multiple choice. Phrases you saved with the [Atomus](https://atomus.app) Mac app for learning a language get a play button with their original audio.
 
-![Atomus for Obsidian](https://github.com/user-attachments/assets/2bb58fa4-8594-42ac-9319-10e02566e74c)
+![Atomus Flashcards in a note](https://github.com/user-attachments/assets/2bb58fa4-8594-42ac-9319-10e02566e74c)
 
-## What it does
+## What it renders
 
-Atomus uses a simple markdown-first syntax for spaced-repetition "atoms". This plugin makes that syntax render beautifully inside Obsidian, so you can write and review from the same app you already use for notes.
-
-| Syntax | What you get |
+| You write | You see |
 |---|---|
-| `Question == Answer` | Single-line atom. `==` becomes a `→` arrow; question/answer color-coded. |
-| `Question ==`<br>`  child lines` | Multi-line atom. `==` becomes `↓`, indented children show as the answer. |
-| `  (x) correct`<br>`  ( ) wrong` | Multiple choice. `(x)` turns into a filled dot, `( )` into an empty one. |
-| `  1. first`<br>`  2. second` | Numbered list answer. |
-| `Text with {{gap}}` | Cloze deletion — renders as a pill. |
-| `Text {{c1::first}} and {{c2::second}}` | Numbered cloze for multiple gaps. |
-| `- [x] done` followed by indented lines | Atoms under a done todo are dimmed + strikethrough. |
+| `¿Me echas una mano? == Can you give me a hand?` | The front and back, with `==` shown as an arrow |
+| `word ==> definition`, `word <== definition`, `word <=> definition` | One-way, reverse and two-way cards (`→`, `←`, `↔`) |
+| `Question ==` with indented lines below | A multi-line answer |
+| `(x) right` / `( ) wrong` under a question | Multiple choice, the right answer marked |
+| `Can you {{give}} me a hand?` | A cloze gap as a pill. `{{c1::...}}` and `{{answer\|distractor}}` work too |
+| Indented lines under `- [x] done` | Dimmed, so finished items step back |
 
-The plugin is **visual only** — your markdown stays plain text. Compatible with [Atomus desktop](https://atomus.app) so the same files work in both.
+The separator needs a space on both sides, so `==highlights==` stay highlights. Nothing changes inside code blocks, inline code, math or frontmatter. The plugin never edits your files: put the cursor on a line to see and edit the raw text.
+
+## Learning a language with Atomus
+
+[Atomus](https://atomus.app) is a Mac app that saves phrases from anything you hear on your Mac (videos, podcasts, calls) with their audio and translation, and reviews them in the notch with FSRS. It writes each phrase to your vault as `phrase == translation`.
+
+With this plugin, those notes read like flashcards in Obsidian, and each saved phrase gets a ▶ button that plays the clip you heard. Hover it to see where you heard it. It also works on Obsidian mobile when your vault syncs, so you can listen to your phrases on your phone.
+
+Atomus keeps the audio and source of each phrase in your vault (`Attachments/audio` and the hidden `.threads` folder). The plugin only reads those local files. It makes no network requests.
+
+You don't need Atomus to use the plugin. Any `==` card, cloze or multiple choice renders on its own.
 
 ## Install
 
-### From Community Plugins (recommended, once approved)
+**Community plugins:** Settings → Community plugins → Browse → search "Atomus" → Install → Enable.
 
-In Obsidian: **Settings → Community plugins → Browse → search "Atomus" → Install → Enable**.
+**Manually:** download `main.js`, `manifest.json` and `styles.css` from the latest [release](../../releases) into `<your vault>/.obsidian/plugins/atomus/`, then enable the plugin in Settings → Community plugins.
 
-### Manual install
+## Compatibility
 
-Download `main.js`, `manifest.json`, and `styles.css` from the latest [release](../../releases), then drop them into `<your-vault>/.obsidian/plugins/atomus/`. Restart Obsidian and enable the plugin in settings.
+- Live Preview and Reading view.
+- Desktop and mobile.
+- Colors come from your theme's variables (`--text-accent`, `--text-muted`, `--color-yellow`, `--color-green`), so it fits any theme.
+- Works alongside wikilinks, headings, lists and tasks. Links and formatting inside a card keep working in Reading view.
 
 ## Development
 
 ```bash
 npm install
 npm run dev    # watch mode
-npm run build  # production build → main.js
+npm run build  # production build to main.js
+npm run lint   # the same rules the Obsidian review uses
 ```
 
-Symlink this folder into your test vault:
+Symlink this folder into a test vault, then reload Obsidian after each build:
 
 ```bash
-ln -sfn "$(pwd)" /path/to/your/vault/.obsidian/plugins/atomus
+ln -sfn "$(pwd)" /path/to/vault/.obsidian/plugins/atomus
 ```
-
-Then Cmd+R inside Obsidian to reload the plugin after each build.
-
-## Theme support
-
-Colors come from Obsidian's native theme variables (`--text-accent`, `--text-muted`, `--color-yellow`, `--color-green`, etc), so the plugin adapts to any theme you're using — Minimal, Things, Atom, California Coast, Shimmering Focus, custom — without extra configuration.
-
-## Compatibility
-
-- Works in both Live Preview and Reading Mode.
-- Plays nicely with wikilinks `[[...]]`, headings, standard lists, and todos — we only touch Atomus-specific syntax.
-- When the cursor is on an atom's line, the raw source is shown so you can edit; move away and the pretty render returns.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE).
